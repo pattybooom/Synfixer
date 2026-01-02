@@ -1,12 +1,14 @@
 :root {
-    --bg: #070b16;
-    --card: #0b1020;
-    --muted: #9aa4bf;
-    --text: #eef2ff;
-    --accent: #4ade80;
-    --accent2: #60a5fa;
+    --bg: #1a1a1a;
+    --card: #222222;
+    --muted: #b5b5b5;
+    --text: #f2f2f2;
+
+    --accent: #e83fd4;
+    /* main accent */
     --danger: #fb7185;
-    --border: rgba(255, 255, 255, .08);
+
+    --border: rgba(255, 255, 255, .10);
     --shadow: 0 10px 30px rgba(0, 0, 0, .35);
 }
 
@@ -22,9 +24,7 @@ body {
 body {
     margin: 0;
     font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-    background: radial-gradient(1200px 800px at 20% 0%, rgba(96, 165, 250, .18), transparent 60%),
-        radial-gradient(1200px 800px at 80% 20%, rgba(74, 222, 128, .12), transparent 60%),
-        var(--bg);
+    background: var(--bg);
     color: var(--text);
 }
 
@@ -367,4 +367,49 @@ body {
 .tab.active {
     border-color: rgba(96, 165, 250, .35);
     background: rgba(96, 165, 250, .12);
+}
+
+/* Simpler surfaces */
+.topbar {
+    background: rgba(26, 26, 26, .92);
+    border-bottom: 1px solid var(--border);
+}
+
+.card {
+    background: var(--card);
+}
+
+/* Buttons: primary = accent */
+.btn.primary {
+    background: var(--accent);
+    border-color: rgba(232, 63, 212, .65);
+    color: #111;
+}
+
+.btn.primary:hover {
+    filter: brightness(1.03);
+}
+
+/* Tabs: default neutral, active = accent */
+.tabbar {
+    background: rgba(26, 26, 26, .92);
+    border-top: 1px solid var(--border);
+}
+
+.tab {
+    transition: background-color .12s ease, border-color .12s ease, color .12s ease;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.tab.active {
+    background: var(--accent);
+    border-color: rgba(232, 63, 212, .65);
+    color: #111;
+}
+
+/* Chips/pills can also lean accent when needed */
+.chip {
+    border-color: rgba(232, 63, 212, .35);
 }

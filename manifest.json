@@ -3,8 +3,8 @@
     "short_name": "Synfixer",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#070b16",
-    "theme_color": "#0b1020",
+    "background_color": "#1a1a1a",
+    "theme_color": "#1a1a1a",
     "icons": [
         {
             "src": "icons/icon-192.png",
