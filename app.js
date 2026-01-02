@@ -151,6 +151,7 @@ function computeToday() {
     dayKey,
     count: todays.length,
     challenge,
+    mcqSelectedIndex: null
   };
 }
 
@@ -302,35 +303,27 @@ function renderToday() {
   $("#solutionBox").style.display = "none";
   $("#solutionPre").textContent = "";
 
-  if (c.type === "mcq") {
+    if (c.type === "mcq") {
     brokenPre.textContent = c.code || "";
     choices.style.display = "";
-    const group = `mcq-${dayKey}-${n}`;
+    state.today.mcqSelectedIndex = null;
+    choices.innerHTML = "";
 
     c.choices.forEach((choice, idx) => {
-      const label = document.createElement("label");
-      label.style.display = "flex";
-      label.style.alignItems = "flex-start";
-      label.style.gap = "10px";
-      label.style.padding = "10px 12px";
-      label.style.marginTop = "8px";
-      label.style.borderRadius = "18px";
-      label.style.border = "1px solid var(--border)";
-      label.style.background = "rgba(0,0,0,.15)";
-      label.style.cursor = "pointer";
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "mcq-choice";
+      btn.textContent = choice;
 
-      const input = document.createElement("input");
-      input.type = "radio";
-      input.name = group;
-      input.value = String(idx);
-      input.style.marginTop = "3px";
+      btn.onclick = () => {
+        state.today.mcqSelectedIndex = idx;
+        // highlight selected
+        choices.querySelectorAll(".mcq-choice").forEach((b, i) => {
+          b.classList.toggle("selected", i === idx);
+        });
+      };
 
-      const text = document.createElement("div");
-      text.innerHTML = `<div style="font-weight:800">${escapeHtml(choice)}</div>`;
-
-      label.appendChild(input);
-      label.appendChild(text);
-      choices.appendChild(label);
+      choices.appendChild(btn);
     });
 
     clearResult();
@@ -531,15 +524,12 @@ function checkAnswer() {
   }
 
   if (c.type === "mcq") {
-    const dayKey = state.today.dayKey;
-    const todays = getCompletionsForDay(dayKey);
-    const group = `mcq-${dayKey}-${todays.length}`;
-    const checked = document.querySelector(`input[name="${group}"]:checked`);
-    if (!checked) {
+    const selectedIndex = state.today.mcqSelectedIndex;
+    if (selectedIndex === null || selectedIndex === undefined) {
       setResult("Pick an option first 👀", false);
       return;
     }
-    const selectedIndex = Number(checked.value);
+
     if (selectedIndex === c.answerIndex) {
       recordCompletion(c, String(selectedIndex));
       setResult(`Correct! Completed today: ${state.today.count} ✅`, true);

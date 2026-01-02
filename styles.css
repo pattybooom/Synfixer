@@ -385,3 +385,40 @@ button,
     font-size: 16px;
     line-height: 1.5;
 }
+
+/* MCQ: smaller, regular font, full-row accent when selected */
+.mcq-choice {
+    width: 100%;
+    text-align: left;
+    padding: 10px 12px;
+    margin-top: 8px;
+
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(0, 0, 0, .15);
+
+    font-weight: 400;
+    /* regular */
+    font-size: 14px;
+    /* smaller */
+    line-height: 1.35;
+
+    cursor: pointer;
+}
+
+.mcq-choice.selected {
+    background: var(--accent);
+    border-color: rgba(232, 63, 212, .65);
+    color: #111;
+}
+
+.mcq-choice:active {
+    transform: translateY(1px);
+}
+
+/* make sure iOS doesn't add native styling */
+.mcq-choice {
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
