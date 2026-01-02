@@ -245,7 +245,7 @@
             "range end is exclusive.",
             "You usually use n + 1."
         ],
-        "template": "def count_to(n):\n    for i in range(1, __BLANK__):\n        print(i)\n",
+        "template": "def count_to(n):\n    for i in range(1, ______):\n        print(i)\n",
         "answer": "n + 1"
     },
     {
@@ -259,7 +259,7 @@
             "Use dict.get.",
             "Provide a default."
         ],
-        "template": "def get_score(scores, name):\n    return scores.__BLANK__(name, 0)\n",
+        "template": "def get_score(scores, name):\n    return scores.______(name, 0)\n",
         "answer": "get"
     },
     {
@@ -272,7 +272,7 @@
         "hints": [
             "Use strip() to remove whitespace."
         ],
-        "template": "def is_blank(s):\n    return __BLANK__ == \"\"\n",
+        "template": "def is_blank(s):\n    return ______ == \"\"\n",
         "answer": "s.strip()"
     },
     {
@@ -285,7 +285,7 @@
         "hints": [
             "Put the variable in { } inside an f-string."
         ],
-        "template": "def greet(name):\n    return f\"Hello, __BLANK__!\"\n",
+        "template": "def greet(name):\n    return f\"Hello, ______!\"\n",
         "answer": "{name}"
     },
     {
@@ -299,7 +299,7 @@
             "extend takes an iterable.",
             "append adds one item."
         ],
-        "template": "nums = [1, 2]\nnums.__BLANK__([3, 4])\n",
+        "template": "nums = [1, 2]\nnums.______([3, 4])\n",
         "answer": "extend"
     },
     {
@@ -313,7 +313,7 @@
             "Catch ValueError.",
             "Return None in except."
         ],
-        "template": "def to_int(s):\n    try:\n        return int(s)\n    except __BLANK__:\n        return None\n",
+        "template": "def to_int(s):\n    try:\n        return int(s)\n    except ______:\n        return None\n",
         "answer": "ValueError"
     },
     {
@@ -326,7 +326,7 @@
         "hints": [
             "Use ','.join(list)."
         ],
-        "template": "def csv_line(words):\n    return __BLANK__.join(words)\n",
+        "template": "def csv_line(words):\n    return ______.join(words)\n",
         "answer": "\",\""
     },
     {
@@ -340,7 +340,7 @@
             "Use a slicing copy.",
             "Or list(a)."
         ],
-        "template": "a = [1, 2, 3]\nb = a__BLANK__\n",
+        "template": "a = [1, 2, 3]\nb = a______\n",
         "answer": "[:]"
     },
     {
@@ -353,7 +353,7 @@
         "hints": [
             "Use {k: v for ...}."
         ],
-        "template": "def squares_map(nums):\n    return {x: __BLANK__ for x in nums}\n",
+        "template": "def squares_map(nums):\n    return {x: ______ for x in nums}\n",
         "answer": "x * x"
     },
     {
@@ -366,7 +366,7 @@
         "hints": [
             "Even means remainder 0 when divided by 2."
         ],
-        "template": "def is_even(x):\n    return x % 2 __BLANK__ 0\n",
+        "template": "def is_even(x):\n    return x % 2 ______ 0\n",
         "answer": "=="
     },
     {
