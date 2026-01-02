@@ -176,6 +176,10 @@ body {
     cursor: pointer;
 }
 
+#btnHint {
+    font-size: 50%;
+}
+
 .btn:hover {
     filter: brightness(1.03)
 }
@@ -189,6 +193,7 @@ body {
 .btn.danger {
     background: rgba(251, 113, 133, .12);
     border-color: rgba(251, 113, 133, .35);
+    font-size: 50%;
 }
 
 .btn.small {

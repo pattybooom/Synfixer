@@ -1,11 +1,12 @@
-const CACHE_NAME = "daily-fix-v4.5";
+const CACHE_NAME = "daily-fix-v6.1";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
   "./challenges.json",
-  "./manifest.json"
+  "./manifest.json",
+  "./correct.m4a"
 ];
 
 self.addEventListener("install", (event) => {

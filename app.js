@@ -10,7 +10,7 @@ const screens = {
   settings: $("#screenSettings"),
 };
 
-const correctAudio = new Audio("./correct.mp3");
+const correctAudio = new Audio("./correct.m4a");
 correctAudio.preload = "auto";
 correctAudio.playsInline = true;
 
@@ -584,6 +584,11 @@ function checkMissedDayNotice() {
   }
 }
 
+function bindClick(id, fn) {
+  const el = $(id);
+  if (el) el.onclick = fn;
+}
+
 function initNav() {
   document.querySelectorAll(".tab").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -591,27 +596,33 @@ function initNav() {
     });
   });
 
-  $("#btnGoToday").onclick = () => (location.hash = "#today");
-  $("#btnBackHome").onclick = () => (location.hash = "#home");
-  $("#btnBackHome2").onclick = () => (location.hash = "#home");
-  $("#btnBackHome3").onclick = () => (location.hash = "#home");
-  $("#btnGoHistory").onclick = () => (location.hash = "#history");
-  $("#btnGoSettings").onclick = () => (location.hash = "#settings");
+  bindClick("#btnGoToday", () => (location.hash = "#today"));
+  bindClick("#btnBackHome", () => (location.hash = "#home"));
+  bindClick("#btnBackHome2", () => (location.hash = "#home"));
+  bindClick("#btnBackHome3", () => (location.hash = "#home"));
+  bindClick("#btnGoHistory", () => (location.hash = "#history"));
+  bindClick("#btnGoSettings", () => (location.hash = "#settings"));
 
-  $("#btnHint").onclick = () => showHint("today");
-  $("#btnHintHome").onclick = () => showHint("home");
-  $("#btnShowSolution").onclick = () => showSolution();
-  $("#btnCheck").onclick = () => checkAnswer();
-  $("#btnCopyBroken").onclick = () => copyBrokenToEditor();
+  bindClick("#btnHint", () => showHint("today"));
+  bindClick("#btnHintHome", () => showHint("home"));
+  bindClick("#btnShowSolution", () => showSolution());
+  bindClick("#btnCheck", () => checkAnswer());
+  bindClick("#btnCopyBroken", () => copyBrokenToEditor());
 
-  $("#toggleGrace").onchange = (e) => {
-    state.store.settings.graceEnabled = !!e.target.checked;
-    saveStore();
-  };
+  const toggle = $("#toggleGrace");
+  if (toggle) {
+    toggle.onchange = (e) => {
+      state.store.settings.graceEnabled = !!e.target.checked;
+      saveStore();
+    };
+  }
 
-  $("#btnExport").onclick = () => exportData();
-  $("#fileImport").onchange = (e) => importData(e);
-  $("#btnReset").onclick = () => resetData();
+  bindClick("#btnExport", () => exportData());
+
+  const fileImport = $("#fileImport");
+  if (fileImport) fileImport.onchange = (e) => importData(e);
+
+  bindClick("#btnReset", () => resetData());
 
   // Disable zoom (iOS Safari: pinch + double-tap)
   document.addEventListener("gesturestart", (e) => e.preventDefault(), { passive: false });
@@ -652,12 +663,22 @@ function registerSW() {
 
 async function boot() {
   state.store = loadStore();
-  await loadChallenges();
 
-  computeToday();
-  updateTopUI();
+  // Always wire nav first so buttons/tabs work even if loading challenges fails.
   initNav();
   registerSW();
+
+  try {
+    await loadChallenges();
+    computeToday();
+    updateTopUI();
+  } catch (err) {
+    const msg = (err && err.message) ? err.message : String(err);
+    const sub = $("#subTitle");
+    if (sub) sub.textContent = "⚠️ challenges.json failed to load";
+    const meta = $("#todayMeta");
+    if (meta) meta.textContent = msg;
+  }
 
   window.addEventListener("hashchange", () => {
     route();
