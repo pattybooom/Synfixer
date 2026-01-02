@@ -409,7 +409,7 @@ button,
 .mcq-choice.selected {
     background: var(--accent);
     border-color: rgba(232, 63, 212, .65);
-    color: #111;
+    color: #ffffff;
 }
 
 .mcq-choice:active {
