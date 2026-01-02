@@ -186,6 +186,11 @@ body {
     border-color: rgba(251, 113, 133, .35);
 }
 
+html,
+body {
+    touch-action: manipulation;
+}
+
 .btn.small {
     padding: 8px 10px;
     border-radius: 14px;
