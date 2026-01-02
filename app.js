@@ -1,4 +1,4 @@
-// Daily Fix — Python-only, 3 challenge types, unlimited per day
+// Daily Fix — Python-only, fill_blank + fix_code, unlimited per day
 const STORE_KEY = "dailyfix:v2";
 
 const $ = (sel) => document.querySelector(sel);
@@ -10,6 +10,10 @@ const screens = {
   settings: $("#screenSettings"),
 };
 
+const correctAudio = new Audio("./correct.mp3");
+correctAudio.preload = "auto";
+correctAudio.playsInline = true;
+
 const state = {
   challenges: [],
   today: {
@@ -19,6 +23,15 @@ const state = {
   },
   store: null,
 };
+
+function playCorrectSound() {
+  try {
+    correctAudio.pause();
+    correctAudio.currentTime = 0;
+    const p = correctAudio.play();
+    if (p && typeof p.catch === "function") p.catch(() => {});
+  } catch {}
+}
 
 function isoDayKeyLocal(d = new Date()) {
   const y = d.getFullYear();
@@ -64,7 +77,9 @@ function defaultStore() {
       graceAvailable: true,
       graceUsedForDayKey: null,
     },
-    completions: {}
+    completions: {
+      // dayKey -> [ {challengeId, completedAt, type, difficulty, userAnswer}, ... ]
+    },
   };
 }
 
@@ -126,7 +141,7 @@ function hashString(str) {
     h ^= str.charCodeAt(i);
     h = Math.imul(h, 16777619);
   }
-  return (h >>> 0);
+  return h >>> 0;
 }
 
 function getCompletionsForDay(dayKey) {
@@ -151,7 +166,6 @@ function computeToday() {
     dayKey,
     count: todays.length,
     challenge,
-    mcqSelectedIndex: null
   };
 }
 
@@ -194,15 +208,6 @@ function route() {
 }
 
 function ensureTodayUIExtras() {
-  let choices = $("#choicesBox");
-  if (!choices) {
-    choices = document.createElement("div");
-    choices.id = "choicesBox";
-    choices.style.marginTop = "10px";
-    const broken = $("#brokenCode");
-    broken.parentElement.insertBefore(choices, broken.nextSibling);
-  }
-
   let blank = $("#blankInput");
   if (!blank) {
     blank = document.createElement("input");
@@ -220,7 +225,8 @@ function ensureTodayUIExtras() {
     blank.style.color = "var(--text)";
     blank.style.fontFamily =
       'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace';
-    blank.style.fontSize = "13px";
+    blank.style.fontSize = "16px";
+    blank.style.lineHeight = "1.5";
 
     const editor = $("#editor");
     editor.parentElement.insertBefore(blank, editor);
@@ -261,16 +267,6 @@ function clearResult() {
   box.style.borderColor = "var(--border)";
 }
 
-function escapeHtml(s) {
-  return (s || "").replace(/[&<>"']/g, (c) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    "\"": "&quot;",
-    "'": "&#039;",
-  }[c]));
-}
-
 function renderToday() {
   ensureTodayUIExtras();
 
@@ -289,13 +285,10 @@ function renderToday() {
   const brokenPre = $("#brokenCode");
   const editor = $("#editor");
   const blank = $("#blankInput");
-  const choices = $("#choicesBox");
 
   $("#btnCopyBroken").style.display = "none";
   editor.style.display = "none";
   blank.style.display = "none";
-  choices.style.display = "none";
-  choices.innerHTML = "";
 
   $("#btnAnother").style.display = n > 0 ? "" : "none";
 
@@ -303,42 +296,20 @@ function renderToday() {
   $("#solutionBox").style.display = "none";
   $("#solutionPre").textContent = "";
 
-    if (c.type === "mcq") {
-    brokenPre.textContent = c.code || "";
-    choices.style.display = "";
-    state.today.mcqSelectedIndex = null;
-    choices.innerHTML = "";
-
-    c.choices.forEach((choice, idx) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "mcq-choice";
-      btn.textContent = choice;
-
-      btn.onclick = () => {
-        state.today.mcqSelectedIndex = idx;
-        // highlight selected
-        choices.querySelectorAll(".mcq-choice").forEach((b, i) => {
-          b.classList.toggle("selected", i === idx);
-        });
-      };
-
-      choices.appendChild(btn);
-    });
-
-    clearResult();
-  } else if (c.type === "fill_blank") {
+  if (c.type === "fill_blank") {
     brokenPre.textContent = c.template;
     blank.style.display = "";
     blank.value = "";
     clearResult();
-  } else {
-    brokenPre.textContent = c.broken;
-    $("#btnCopyBroken").style.display = "";
-    editor.style.display = "";
-    editor.value = "";
-    clearResult();
+    return;
   }
+
+  // fix_code
+  brokenPre.textContent = c.broken;
+  $("#btnCopyBroken").style.display = "";
+  editor.style.display = "";
+  editor.value = "";
+  clearResult();
 }
 
 function renderHistory() {
@@ -384,7 +355,7 @@ function renderSettings() {
 
 function showHint(where = "today") {
   const c = state.today.challenge;
-  const hint = (c.hints && c.hints.length) ? c.hints[0] : "No hint for this one.";
+  const hint = c?.hints?.length ? c.hints[0] : "No hint for this one.";
   if (where === "home") {
     const el = $("#homeHint");
     el.style.display = "";
@@ -401,16 +372,14 @@ function showSolution() {
   const box = $("#solutionBox");
   const pre = $("#solutionPre");
 
-  if (c.type === "fix_code") {
-    pre.textContent = c.expected;
+  if (c.type === "fill_blank") {
+    pre.textContent = String(c.template || "").replace("______", c.answer);
     box.style.display = "";
-  } else if (c.type === "fill_blank") {
-    pre.textContent = c.template.replace("__BLANK__", c.answer);
-    box.style.display = "";
-  } else {
-    pre.textContent = `Answer: ${c.choices[c.answerIndex]}`;
-    box.style.display = "";
+    return;
   }
+
+  pre.textContent = c.expected;
+  box.style.display = "";
 }
 
 function copyBrokenToEditor() {
@@ -488,9 +457,10 @@ function applyStreakOnFirstCompletion(todayKey) {
 }
 
 function recordCompletion(challenge, userAnswer) {
+  playCorrectSound();
+
   const dayKey = state.today.dayKey;
   const list = getCompletionsForDay(dayKey);
-
   const firstOfDay = list.length === 0;
 
   const entry = {
@@ -523,23 +493,6 @@ function checkAnswer() {
     return;
   }
 
-  if (c.type === "mcq") {
-    const selectedIndex = state.today.mcqSelectedIndex;
-    if (selectedIndex === null || selectedIndex === undefined) {
-      setResult("Pick an option first 👀", false);
-      return;
-    }
-
-    if (selectedIndex === c.answerIndex) {
-      recordCompletion(c, String(selectedIndex));
-      setResult(`Correct! Completed today: ${state.today.count} ✅`, true);
-      $("#btnAnother").style.display = "";
-    } else {
-      setResult("Not quite — try again.", false);
-    }
-    return;
-  }
-
   if (c.type === "fill_blank") {
     const ans = normalizeAnswer($("#blankInput").value);
     if (!ans) {
@@ -557,6 +510,7 @@ function checkAnswer() {
     return;
   }
 
+  // fix_code
   const editorVal = $("#editor").value;
   const got = normalizeCode(editorVal);
   const exp = normalizeCode(c.expected);
@@ -680,7 +634,9 @@ async function loadChallenges() {
   const res = await fetch("./challenges.json", { cache: "no-cache" });
   const data = await res.json();
 
-  const filtered = (Array.isArray(data) ? data : []).filter((c) => c && c.language === "py");
+  const filtered = (Array.isArray(data) ? data : []).filter(
+    (c) => c && c.language === "py" && (c.type === "fill_blank" || c.type === "fix_code")
+  );
   state.challenges = filtered;
 
   if (state.challenges.length === 0) {

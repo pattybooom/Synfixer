@@ -1,249 +1,14 @@
 [
     {
-        "id": "py-easy-mcq-01",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "range end value",
-        "prompt": "What does this print?",
-        "code": "print(list(range(3)))\n",
-        "hints": [
-            "range(n) starts at 0.",
-            "The end is exclusive."
-        ],
-        "choices": [
-            "[0, 1, 2]",
-            "[1, 2, 3]",
-            "[0, 1, 2, 3]",
-            "[]"
-        ],
-        "answerIndex": 0
-    },
-    {
-        "id": "py-easy-mcq-02",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "list append vs extend",
-        "prompt": "What is the value of x after running this?",
-        "code": "x = [1, 2]\nx.append([3, 4])\n",
-        "hints": [
-            "append adds one item.",
-            "extend adds multiple items."
-        ],
-        "choices": [
-            "[1, 2, 3, 4]",
-            "[1, 2, [3, 4]]",
-            "[[1, 2], [3, 4]]",
-            "[1, 2]"
-        ],
-        "answerIndex": 1
-    },
-    {
-        "id": "py-easy-mcq-03",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "truthiness of empty list",
-        "prompt": "What does this print?",
-        "code": "x = []\nif x:\n    print('yes')\nelse:\n    print('no')\n",
-        "hints": [
-            "Empty containers are falsy.",
-            "Non-empty containers are truthy."
-        ],
-        "choices": [
-            "yes",
-            "no",
-            "It errors",
-            "Nothing"
-        ],
-        "answerIndex": 1
-    },
-    {
-        "id": "py-easy-mcq-04",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "string formatting",
-        "prompt": "Which is the correct f-string to produce: Hello, Ada! (assume name = \"Ada\")",
-        "code": "name = \"Ada\"\n",
-        "hints": [
-            "f-strings start with f.",
-            "Expressions go inside { }."
-        ],
-        "choices": [
-            "\"Hello, {name}!\"",
-            "f\"Hello, {name}!\"",
-            "f\"Hello, name!\"",
-            "\"Hello, \" + {name} + \"!\""
-        ],
-        "answerIndex": 1
-    },
-    {
-        "id": "py-easy-mcq-05",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "dict get default",
-        "prompt": "What does this print?",
-        "code": "d = {}\nprint(d.get('x', 0))\n",
-        "hints": [
-            "dict.get(key, default) returns default if missing."
-        ],
-        "choices": [
-            "None",
-            "0",
-            "KeyError",
-            "\"x\""
-        ],
-        "answerIndex": 1
-    },
-    {
-        "id": "py-easy-mcq-06",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "len of string",
-        "prompt": "What does this print?",
-        "code": "print(len('hello'))\n",
-        "hints": [
-            "len counts characters."
-        ],
-        "choices": [
-            "4",
-            "5",
-            "6",
-            "It errors"
-        ],
-        "answerIndex": 1
-    },
-    {
-        "id": "py-easy-mcq-07",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "mutable list aliasing",
-        "prompt": "What is printed?",
-        "code": "a = [1, 2]\nb = a\nb.append(3)\nprint(a)\n",
-        "hints": [
-            "b points to the same list as a.",
-            "Mutations affect both references."
-        ],
-        "choices": [
-            "[1, 2]",
-            "[1, 2, 3]",
-            "[3]",
-            "It errors"
-        ],
-        "answerIndex": 1
-    },
-    {
-        "id": "py-easy-mcq-08",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "integer division",
-        "prompt": "What does this print?",
-        "code": "print(7 // 2)\n",
-        "hints": [
-            "// is floor division."
-        ],
-        "choices": [
-            "3",
-            "3.5",
-            "4",
-            "It errors"
-        ],
-        "answerIndex": 0
-    },
-    {
-        "id": "py-easy-mcq-09",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "exception type",
-        "prompt": "What exception is raised by this line?",
-        "code": "int('abc')\n",
-        "hints": [
-            "int() fails if the string isn't numeric."
-        ],
-        "choices": [
-            "TypeError",
-            "ValueError",
-            "KeyError",
-            "IndexError"
-        ],
-        "answerIndex": 1
-    },
-    {
-        "id": "py-easy-mcq-10",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "in operator on list",
-        "prompt": "What does this print?",
-        "code": "nums = [1, 2, 3]\nprint(2 in nums)\n",
-        "hints": [
-            "in checks membership."
-        ],
-        "choices": [
-            "True",
-            "False",
-            "2",
-            "It errors"
-        ],
-        "answerIndex": 0
-    },
-    {
-        "id": "py-easy-mcq-11",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "default parameter evaluation",
-        "prompt": "Which statement is true about default arguments in Python?",
-        "code": "",
-        "hints": [
-            "Defaults are evaluated once.",
-            "Mutable defaults can be surprising."
-        ],
-        "choices": [
-            "Defaults are evaluated every call.",
-            "Defaults are evaluated once at function definition time.",
-            "Defaults are ignored if you pass None.",
-            "Defaults must be immutable."
-        ],
-        "answerIndex": 1
-    },
-    {
-        "id": "py-easy-mcq-12",
-        "type": "mcq",
-        "difficulty": "easy",
-        "language": "py",
-        "title": "list comprehension result",
-        "prompt": "What does this print?",
-        "code": "print([x * 2 for x in [1, 2, 3]])\n",
-        "hints": [
-            "Comprehensions build a new list.",
-            "Each element is transformed."
-        ],
-        "choices": [
-            "[2, 4, 6]",
-            "[1, 2, 3, 1, 2, 3]",
-            "[2, 3, 4]",
-            "It errors"
-        ],
-        "answerIndex": 0
-    },
-    {
         "id": "py-medium-fill-01",
         "type": "fill_blank",
         "difficulty": "medium",
         "language": "py",
-        "title": "inclusive range",
-        "prompt": "Fill the blank so the loop runs for 1..n (inclusive).",
+        "title": "Inclusive range",
+        "prompt": "Fill the blank so the loop runs 1..n (inclusive).",
         "hints": [
             "range end is exclusive.",
-            "You usually use n + 1."
+            "Usually use n + 1."
         ],
         "template": "def count_to(n):\n    for i in range(1, ______):\n        print(i)\n",
         "answer": "n + 1"
@@ -253,13 +18,13 @@
         "type": "fill_blank",
         "difficulty": "medium",
         "language": "py",
-        "title": "safe dict access",
-        "prompt": "Fill the blank so missing keys return 0 instead of crashing.",
+        "title": "Safe dict access",
+        "prompt": "Fill the blank so missing keys return 0.",
         "hints": [
             "Use dict.get.",
-            "Provide a default."
+            "Pass a default value."
         ],
-        "template": "def get_score(scores, name):\n    return scores.______(name, 0)\n",
+        "template": "def score(scores, name):\n    return scores.______(name, 0)\n",
         "answer": "get"
     },
     {
@@ -267,10 +32,11 @@
         "type": "fill_blank",
         "difficulty": "medium",
         "language": "py",
-        "title": "strip whitespace",
-        "prompt": "Fill the blank so it returns True for strings that are empty or only spaces.",
+        "title": "Strip whitespace",
+        "prompt": "Fill the blank so strings of spaces count as blank.",
         "hints": [
-            "Use strip() to remove whitespace."
+            "Use strip() or whitespace removal.",
+            "Compare to empty string."
         ],
         "template": "def is_blank(s):\n    return ______ == \"\"\n",
         "answer": "s.strip()"
@@ -280,38 +46,39 @@
         "type": "fill_blank",
         "difficulty": "medium",
         "language": "py",
-        "title": "f-string expression",
-        "prompt": "Fill the blank to correctly format the message.",
+        "title": "Even check",
+        "prompt": "Fill the blank so it returns True if x is even.",
         "hints": [
-            "Put the variable in { } inside an f-string."
+            "Even means remainder 0.",
+            "Use % 2."
         ],
-        "template": "def greet(name):\n    return f\"Hello, ______!\"\n",
-        "answer": "{name}"
+        "template": "def is_even(x):\n    return x % 2 ______ 0\n",
+        "answer": "=="
     },
     {
         "id": "py-medium-fill-05",
         "type": "fill_blank",
         "difficulty": "medium",
         "language": "py",
-        "title": "append vs extend",
-        "prompt": "Fill the blank so the list becomes [1, 2, 3, 4].",
+        "title": "Default to empty list safely",
+        "prompt": "Fill the blank to avoid a mutable default argument bug.",
         "hints": [
-            "extend takes an iterable.",
-            "append adds one item."
+            "Use None as the default.",
+            "Create a list inside if None."
         ],
-        "template": "nums = [1, 2]\nnums.______([3, 4])\n",
-        "answer": "extend"
+        "template": "def add_item(x, items=______):\n    if items is None:\n        items = []\n    items.append(x)\n    return items\n",
+        "answer": "None"
     },
     {
         "id": "py-medium-fill-06",
         "type": "fill_blank",
         "difficulty": "medium",
         "language": "py",
-        "title": "exception handling",
-        "prompt": "Fill the blank so invalid ints return None instead of throwing.",
+        "title": "Catching ValueError",
+        "prompt": "Fill the blank so invalid ints return None instead of crashing.",
         "hints": [
-            "Catch ValueError.",
-            "Return None in except."
+            "int('abc') raises ValueError.",
+            "Catch that exception."
         ],
         "template": "def to_int(s):\n    try:\n        return int(s)\n    except ______:\n        return None\n",
         "answer": "ValueError"
@@ -321,10 +88,11 @@
         "type": "fill_blank",
         "difficulty": "medium",
         "language": "py",
-        "title": "join strings",
+        "title": "Join with commas",
         "prompt": "Fill the blank so it joins words with commas.",
         "hints": [
-            "Use ','.join(list)."
+            "Use a string separator.",
+            "Call .join(list_of_strings)."
         ],
         "template": "def csv_line(words):\n    return ______.join(words)\n",
         "answer": "\",\""
@@ -334,11 +102,11 @@
         "type": "fill_blank",
         "difficulty": "medium",
         "language": "py",
-        "title": "list copy",
-        "prompt": "Fill the blank so b is a copy of a (not an alias).",
+        "title": "Copy a list (not alias)",
+        "prompt": "Fill the blank so b is a copy of a (not the same object).",
         "hints": [
-            "Use a slicing copy.",
-            "Or list(a)."
+            "Slicing copy uses [:].",
+            "list(a) also works."
         ],
         "template": "a = [1, 2, 3]\nb = a______\n",
         "answer": "[:]"
@@ -348,10 +116,11 @@
         "type": "fill_blank",
         "difficulty": "medium",
         "language": "py",
-        "title": "dictionary comprehension",
-        "prompt": "Fill the blank to build a dict mapping x -> x*x for x in nums.",
+        "title": "Dictionary comprehension value",
+        "prompt": "Fill the blank to map x -> x*x for each x in nums.",
         "hints": [
-            "Use {k: v for ...}."
+            "Use x * x as the value.",
+            "Inside {x: ... for x in nums}."
         ],
         "template": "def squares_map(nums):\n    return {x: ______ for x in nums}\n",
         "answer": "x * x"
@@ -361,13 +130,264 @@
         "type": "fill_blank",
         "difficulty": "medium",
         "language": "py",
-        "title": "return boolean",
-        "prompt": "Fill the blank so it returns True if x is even.",
+        "title": "List comprehension filter",
+        "prompt": "Fill the blank so it keeps only positives (not just truthy).",
         "hints": [
-            "Even means remainder 0 when divided by 2."
+            "0 is falsy but not negative.",
+            "Use > 0."
         ],
-        "template": "def is_even(x):\n    return x % 2 ______ 0\n",
-        "answer": "=="
+        "template": "def positives(nums):\n    return [n for n in nums if ______]\n",
+        "answer": "n > 0"
+    },
+    {
+        "id": "py-medium-fill-11",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Enumerate start",
+        "prompt": "Fill the blank so the first index printed is 1, not 0.",
+        "hints": [
+            "enumerate has a start= parameter.",
+            "start=1."
+        ],
+        "template": "def print_numbered(items):\n    for i, x in enumerate(items, start=______):\n        print(i, x)\n",
+        "answer": "1"
+    },
+    {
+        "id": "py-medium-fill-12",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Sort by length",
+        "prompt": "Fill the blank so it sorts words by length.",
+        "hints": [
+            "sorted(..., key=...)",
+            "len is a function."
+        ],
+        "template": "def sort_by_len(words):\n    return sorted(words, key=______)\n",
+        "answer": "len"
+    },
+    {
+        "id": "py-medium-fill-13",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Fallback on None",
+        "prompt": "Fill the blank so it returns 0 when x is None, else returns x.",
+        "hints": [
+            "Use a conditional expression.",
+            "x is None is the check."
+        ],
+        "template": "def none_to_zero(x):\n    return 0 if ______ else x\n",
+        "answer": "x is None"
+    },
+    {
+        "id": "py-medium-fill-14",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Set membership",
+        "prompt": "Fill the blank so it checks membership efficiently.",
+        "hints": [
+            "Use a set for membership.",
+            "Use 'in'."
+        ],
+        "template": "def contains_fast(values, x):\n    s = set(values)\n    return x ______ s\n",
+        "answer": "in"
+    },
+    {
+        "id": "py-medium-fill-15",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Get last element safely",
+        "prompt": "Fill the blank so it returns the last element of a list.",
+        "hints": [
+            "Negative indexing.",
+            "Last element is index -1."
+        ],
+        "template": "def last(xs):\n    return xs[______]\n",
+        "answer": "-1"
+    },
+    {
+        "id": "py-medium-fill-16",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Remove trailing newline",
+        "prompt": "Fill the blank so it strips only the trailing newline if present.",
+        "hints": [
+            "rstrip can take chars.",
+            "Use '\\n'."
+        ],
+        "template": "def chomp(line):\n    return line.rstrip(______)\n",
+        "answer": "\"\\n\""
+    },
+    {
+        "id": "py-medium-fill-17",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Zip two lists",
+        "prompt": "Fill the blank so it pairs names with scores.",
+        "hints": [
+            "Use zip(a, b).",
+            "Then convert to list if needed."
+        ],
+        "template": "def pair(names, scores):\n    return list(______(names, scores))\n",
+        "answer": "zip"
+    },
+    {
+        "id": "py-medium-fill-18",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Convert to int safely",
+        "prompt": "Fill the blank so it converts s to int, or returns default if conversion fails.",
+        "hints": [
+            "Use try/except ValueError.",
+            "Return default in except."
+        ],
+        "template": "def to_int_or(s, default):\n    try:\n        return int(s)\n    except ValueError:\n        return ______\n",
+        "answer": "default"
+    },
+    {
+        "id": "py-medium-fill-19",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Update dict count",
+        "prompt": "Fill the blank so it counts word occurrences.",
+        "hints": [
+            "Use get with default 0.",
+            "Then add 1."
+        ],
+        "template": "def count_words(words):\n    counts = {}\n    for w in words:\n        counts[w] = counts.get(w, 0) + ______\n    return counts\n",
+        "answer": "1"
+    },
+    {
+        "id": "py-medium-fill-20",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Slicing up to index",
+        "prompt": "Fill the blank so it returns the first n elements.",
+        "hints": [
+            "Use slicing.",
+            "xs[:n]."
+        ],
+        "template": "def first_n(xs, n):\n    return xs[______]\n",
+        "answer": ":n"
+    },
+    {
+        "id": "py-medium-fill-21",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Check key existence",
+        "prompt": "Fill the blank so it returns True if key is in dict d.",
+        "hints": [
+            "Use 'in' with dict checks keys."
+        ],
+        "template": "def has_key(d, key):\n    return key ______ d\n",
+        "answer": "in"
+    },
+    {
+        "id": "py-medium-fill-22",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Make lower-case",
+        "prompt": "Fill the blank so it returns a lower-case version of s.",
+        "hints": [
+            "Use a string method.",
+            "lower() returns a new string."
+        ],
+        "template": "def lower(s):\n    return s.______()\n",
+        "answer": "lower"
+    },
+    {
+        "id": "py-medium-fill-23",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Guard division by zero",
+        "prompt": "Fill the blank so it returns None when b is 0.",
+        "hints": [
+            "Check b == 0 first.",
+            "Return None early."
+        ],
+        "template": "def safe_div(a, b):\n    if ______:\n        return None\n    return a / b\n",
+        "answer": "b == 0"
+    },
+    {
+        "id": "py-medium-fill-24",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Build a set comprehension",
+        "prompt": "Fill the blank so it returns a set of squared values.",
+        "hints": [
+            "Use { ... } with a for-loop.",
+            "Set comprehension."
+        ],
+        "template": "def square_set(nums):\n    return {______ for x in nums}\n",
+        "answer": "x * x"
+    },
+    {
+        "id": "py-medium-fill-25",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Short-circuit default",
+        "prompt": "Fill the blank so it returns s if non-empty else \"(none)\".",
+        "hints": [
+            "Empty string is falsy.",
+            "Use or."
+        ],
+        "template": "def fallback(s):\n    return s ______ \"(none)\"\n",
+        "answer": "or"
+    },
+    {
+        "id": "py-medium-fill-26",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Make an absolute value",
+        "prompt": "Fill the blank so it returns absolute value of x.",
+        "hints": [
+            "Use built-in abs()."
+        ],
+        "template": "def abs_val(x):\n    return ______(x)\n",
+        "answer": "abs"
+    },
+    {
+        "id": "py-medium-fill-27",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Unpack tuple",
+        "prompt": "Fill the blank so it unpacks (x, y) into two variables.",
+        "hints": [
+            "Tuple unpacking uses comma.",
+            "a, b = tuple."
+        ],
+        "template": "p = (10, 20)\nx, y = ______\n",
+        "answer": "p"
+    },
+    {
+        "id": "py-medium-fill-28",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "Check string prefix",
+        "prompt": "Fill the blank so it returns True if s starts with \"py\".",
+        "hints": [
+            "Use startswith.",
+            "startswith takes a string prefix."
+        ],
+        "template": "def is_py(s):\n    return s.startswith(______)\n",
+        "answer": "\"py\""
     },
     {
         "id": "py-hard-fix-01",
@@ -375,7 +395,7 @@
         "difficulty": "hard",
         "language": "py",
         "title": "Off-by-one sum",
-        "prompt": "Fix the function so it returns the sum of 1..n inclusive.",
+        "prompt": "Fix it so it returns the sum of 1..n inclusive.",
         "hints": [
             "range end is exclusive.",
             "Use n + 1."
@@ -388,11 +408,11 @@
         "type": "fix_code",
         "difficulty": "hard",
         "language": "py",
-        "title": "Mutable default arg",
-        "prompt": "Fix the bug: calling add_item twice should not share the same list.",
+        "title": "Mutable default argument",
+        "prompt": "Fix the bug so each call starts with a fresh list unless a list is passed in.",
         "hints": [
-            "Don't use [] as a default.",
-            "Use None then create a list inside."
+            "Use None as default.",
+            "Create a list inside."
         ],
         "broken": "def add_item(x, items=[]):\n    items.append(x)\n    return items\n",
         "expected": "def add_item(x, items=None):\n    if items is None:\n        items = []\n    items.append(x)\n    return items\n"
@@ -403,10 +423,10 @@
         "difficulty": "hard",
         "language": "py",
         "title": "Missing return",
-        "prompt": "Fix it so it returns a list of squared values.",
+        "prompt": "Fix it so the function returns the list it builds.",
         "hints": [
-            "You computed the list.",
-            "Return it at the end."
+            "You computed out.",
+            "Return out at the end."
         ],
         "broken": "def squares(nums):\n    out = []\n    for n in nums:\n        out.append(n * n)\n",
         "expected": "def squares(nums):\n    out = []\n    for n in nums:\n        out.append(n * n)\n    return out\n"
@@ -416,10 +436,11 @@
         "type": "fix_code",
         "difficulty": "hard",
         "language": "py",
-        "title": "Safe dict access",
+        "title": "Safe dict lookup",
         "prompt": "Fix it so missing keys return 0 instead of crashing.",
         "hints": [
-            "Use dict.get(key, default)."
+            "Use dict.get.",
+            "Provide default 0."
         ],
         "broken": "def points(scores, name):\n    return scores[name]\n",
         "expected": "def points(scores, name):\n    return scores.get(name, 0)\n"
@@ -429,11 +450,11 @@
         "type": "fix_code",
         "difficulty": "hard",
         "language": "py",
-        "title": "String formatting",
-        "prompt": "Fix the function so it returns: \"Ada has 3 points\".",
+        "title": "String + int concatenation",
+        "prompt": "Fix it so it returns: \"Ada has 3 points\" even when pts is an int.",
         "hints": [
             "Use an f-string.",
-            "pts might be an int."
+            "Or convert pts to str."
         ],
         "broken": "def message(name, pts):\n    return name + \" has \" + pts + \" points\"\n",
         "expected": "def message(name, pts):\n    return f\"{name} has {pts} points\"\n"
@@ -443,10 +464,11 @@
         "type": "fix_code",
         "difficulty": "hard",
         "language": "py",
-        "title": "Scope bug",
+        "title": "Scope: UnboundLocalError",
         "prompt": "Fix it so it increments the global counter.",
         "hints": [
-            "Assigning makes it local unless declared global."
+            "Assigning makes it local.",
+            "Use global count."
         ],
         "broken": "count = 0\n\ndef bump():\n    count += 1\n    return count\n",
         "expected": "count = 0\n\ndef bump():\n    global count\n    count += 1\n    return count\n"
@@ -456,7 +478,7 @@
         "type": "fix_code",
         "difficulty": "hard",
         "language": "py",
-        "title": "Truthiness mistake",
+        "title": "Truthiness bug in filter",
         "prompt": "Fix it so it keeps only positive numbers (not just truthy ones).",
         "hints": [
             "0 is falsy but not negative.",
@@ -470,13 +492,209 @@
         "type": "fix_code",
         "difficulty": "hard",
         "language": "py",
-        "title": "Exception handling",
+        "title": "Handle invalid int",
         "prompt": "Fix it so invalid inputs return None instead of crashing.",
         "hints": [
-            "int() can raise ValueError.",
-            "Use try/except."
+            "Catch ValueError.",
+            "Return None in except."
         ],
         "broken": "def safe_int(s):\n    return int(s)\n",
         "expected": "def safe_int(s):\n    try:\n        return int(s)\n    except ValueError:\n        return None\n"
+    },
+    {
+        "id": "py-hard-fix-09",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Late binding in lambdas",
+        "prompt": "Fix it so each function returns its own multiplier (2, 3, 4).",
+        "hints": [
+            "Default args capture the current value.",
+            "i=i trick."
+        ],
+        "broken": "def make_funcs():\n    funcs = []\n    for i in [2, 3, 4]:\n        funcs.append(lambda x: x * i)\n    return funcs\n",
+        "expected": "def make_funcs():\n    funcs = []\n    for i in [2, 3, 4]:\n        funcs.append(lambda x, i=i: x * i)\n    return funcs\n"
+    },
+    {
+        "id": "py-hard-fix-10",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Wrong list sort call",
+        "prompt": "Fix it so it returns a sorted list (ascending) without returning None.",
+        "hints": [
+            "list.sort() sorts in-place and returns None.",
+            "Use sorted() or sort then return list."
+        ],
+        "broken": "def sorted_nums(nums):\n    return nums.sort()\n",
+        "expected": "def sorted_nums(nums):\n    return sorted(nums)\n"
+    },
+    {
+        "id": "py-hard-fix-11",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Shadowing built-in",
+        "prompt": "Fix it so it correctly sums the list.",
+        "hints": [
+            "Don't name a variable sum.",
+            "Use a different name."
+        ],
+        "broken": "def total(nums):\n    sum = 0\n    for n in nums:\n        sum += n\n    return sum\n",
+        "expected": "def total(nums):\n    total_sum = 0\n    for n in nums:\n        total_sum += n\n    return total_sum\n"
+    },
+    {
+        "id": "py-hard-fix-12",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Incorrect dict update",
+        "prompt": "Fix it so it counts words correctly.",
+        "hints": [
+            "Use get with default 0.",
+            "Then increment."
+        ],
+        "broken": "def count_words(words):\n    counts = {}\n    for w in words:\n        counts[w] += 1\n    return counts\n",
+        "expected": "def count_words(words):\n    counts = {}\n    for w in words:\n        counts[w] = counts.get(w, 0) + 1\n    return counts\n"
+    },
+    {
+        "id": "py-hard-fix-13",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Return inside loop",
+        "prompt": "Fix it so it checks all elements and returns True if any is negative.",
+        "hints": [
+            "Don't return too early.",
+            "Return after loop if not found."
+        ],
+        "broken": "def any_negative(nums):\n    for n in nums:\n        if n < 0:\n            return True\n        return False\n",
+        "expected": "def any_negative(nums):\n    for n in nums:\n        if n < 0:\n            return True\n    return False\n"
+    },
+    {
+        "id": "py-hard-fix-14",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Wrong condition order",
+        "prompt": "Fix it so it doesn't crash when s is None.",
+        "hints": [
+            "Check None before calling methods.",
+            "Short-circuit matters."
+        ],
+        "broken": "def is_blank(s):\n    return s.strip() == \"\" or s is None\n",
+        "expected": "def is_blank(s):\n    return s is None or s.strip() == \"\"\n"
+    },
+    {
+        "id": "py-hard-fix-15",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "IndexError on empty list",
+        "prompt": "Fix it so it returns None for an empty list.",
+        "hints": [
+            "Check if list is empty.",
+            "Return None early."
+        ],
+        "broken": "def last(xs):\n    return xs[-1]\n",
+        "expected": "def last(xs):\n    if not xs:\n        return None\n    return xs[-1]\n"
+    },
+    {
+        "id": "py-hard-fix-16",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Bad split usage",
+        "prompt": "Fix it so it splits a CSV line into fields correctly.",
+        "hints": [
+            "split takes the separator string.",
+            "Comma is ','."
+        ],
+        "broken": "def parse_csv(line):\n    return line.split()\n",
+        "expected": "def parse_csv(line):\n    return line.split(\",\")\n"
+    },
+    {
+        "id": "py-hard-fix-17",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Using is for equality",
+        "prompt": "Fix it so it correctly checks value equality.",
+        "hints": [
+            "Use == for values.",
+            "is checks identity."
+        ],
+        "broken": "def is_ten(x):\n    return x is 10\n",
+        "expected": "def is_ten(x):\n    return x == 10\n"
+    },
+    {
+        "id": "py-hard-fix-18",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Wrong argument to join",
+        "prompt": "Fix it so it joins with a space between words.",
+        "hints": [
+            "Separator is the string before .join.",
+            "The argument to join is iterable."
+        ],
+        "broken": "def sentence(words):\n    return words.join(\" \")\n",
+        "expected": "def sentence(words):\n    return \" \".join(words)\n"
+    },
+    {
+        "id": "py-hard-fix-19",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Comprehension variable mistake",
+        "prompt": "Fix it so it returns squares of nums.",
+        "hints": [
+            "Use x from the loop.",
+            "x * x."
+        ],
+        "broken": "def squares(nums):\n    return [n * n for x in nums]\n",
+        "expected": "def squares(nums):\n    return [x * x for x in nums]\n"
+    },
+    {
+        "id": "py-hard-fix-20",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Wrong unpack in loop",
+        "prompt": "Fix it so it sums the values in a dict.",
+        "hints": [
+            "Iterating dict gives keys.",
+            "Use .items() to get key,value."
+        ],
+        "broken": "def sum_values(d):\n    total = 0\n    for k, v in d:\n        total += v\n    return total\n",
+        "expected": "def sum_values(d):\n    total = 0\n    for k, v in d.items():\n        total += v\n    return total\n"
+    },
+    {
+        "id": "py-hard-fix-21",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Accidentally reusing accumulator",
+        "prompt": "Fix it so it returns the product of nums (or 1 for empty list).",
+        "hints": [
+            "Product identity is 1.",
+            "Multiply into accumulator."
+        ],
+        "broken": "def product(nums):\n    p = 0\n    for n in nums:\n        p *= n\n    return p\n",
+        "expected": "def product(nums):\n    p = 1\n    for n in nums:\n        p *= n\n    return p\n"
+    },
+    {
+        "id": "py-hard-fix-22",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Bad exception type",
+        "prompt": "Fix it so it returns None when index is out of range.",
+        "hints": [
+            "Out of range is IndexError.",
+            "Catch the right exception."
+        ],
+        "broken": "def get_at(xs, i):\n    try:\n        return xs[i]\n    except KeyError:\n        return None\n",
+        "expected": "def get_at(xs, i):\n    try:\n        return xs[i]\n    except IndexError:\n        return None\n"
     }
 ]
