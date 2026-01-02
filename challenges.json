@@ -1,122 +1,470 @@
 [
     {
-        "id": "js-01-off-by-one",
-        "title": "Off-by-one in loop",
-        "language": "js",
-        "prompt": "This should sum numbers 1..n (inclusive). Fix the bug.",
-        "broken": "function sumTo(n) {\n  let s = 0;\n  for (let i = 1; i < n; i++) {\n    s += i;\n  }\n  return s;\n}\n\n// expected: sumTo(5) === 15\n",
-        "expected": "function sumTo(n) {\n  let s = 0;\n  for (let i = 1; i <= n; i++) {\n    s += i;\n  }\n  return s;\n}\n\n// expected: sumTo(5) === 15\n",
+        "id": "py-easy-mcq-01",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "range end value",
+        "prompt": "What does this print?\n\nprint(list(range(3)))",
         "hints": [
-            "Inclusive ranges usually use <=.",
-            "Try n=1 and n=2 mentally."
-        ]
+            "range(n) starts at 0.",
+            "The end is exclusive."
+        ],
+        "choices": [
+            "[0, 1, 2]",
+            "[1, 2, 3]",
+            "[0, 1, 2, 3]",
+            "[]"
+        ],
+        "answerIndex": 0
     },
     {
-        "id": "js-02-const-reassign",
-        "title": "Const reassignment",
-        "language": "js",
-        "prompt": "This should build a greeting string. Fix the runtime error.",
-        "broken": "function greet(name) {\n  const msg = \"Hello\";\n  msg = msg + \", \" + name + \"!\";\n  return msg;\n}\n",
-        "expected": "function greet(name) {\n  let msg = \"Hello\";\n  msg = msg + \", \" + name + \"!\";\n  return msg;\n}\n",
+        "id": "py-easy-mcq-02",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "list append vs extend",
+        "prompt": "What is the value of x?\n\nx = [1, 2]\nx.append([3, 4])",
         "hints": [
-            "You can’t reassign a const.",
-            "Either use let or build the string in one expression."
-        ]
+            "append adds one item.",
+            "extend adds multiple items."
+        ],
+        "choices": [
+            "[1, 2, 3, 4]",
+            "[1, 2, [3, 4]]",
+            "[[1, 2], [3, 4]]",
+            "[1, 2]"
+        ],
+        "answerIndex": 1
     },
     {
-        "id": "js-03-missing-return",
-        "title": "Missing return",
-        "language": "js",
-        "prompt": "This should return true if x is even. Fix it.",
-        "broken": "function isEven(x) {\n  x % 2 === 0;\n}\n",
-        "expected": "function isEven(x) {\n  return x % 2 === 0;\n}\n",
+        "id": "py-easy-mcq-03",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "truthiness of empty list",
+        "prompt": "What does this print?\n\nx = []\nif x:\n    print('yes')\nelse:\n    print('no')",
         "hints": [
-            "Expressions don’t return automatically.",
-            "Add return."
-        ]
+            "Empty containers are falsy.",
+            "Non-empty containers are truthy."
+        ],
+        "choices": [
+            "yes",
+            "no",
+            "It errors",
+            "Nothing"
+        ],
+        "answerIndex": 1
     },
     {
-        "id": "js-04-array-map",
-        "title": "Map callback bug",
-        "language": "js",
-        "prompt": "This should square all numbers, but returns undefineds. Fix it.",
-        "broken": "function squares(nums) {\n  return nums.map(n => { n * n; });\n}\n",
-        "expected": "function squares(nums) {\n  return nums.map(n => n * n);\n}\n",
+        "id": "py-easy-mcq-04",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "string formatting",
+        "prompt": "Which is the correct f-string to produce: Hello, Ada!\n\nname = \"Ada\"",
         "hints": [
-            "Arrow function with {} needs an explicit return.",
-            "Or remove the braces."
-        ]
+            "f-strings start with f.",
+            "Expressions go inside { }."
+        ],
+        "choices": [
+            "\"Hello, {name}!\"",
+            "f\"Hello, {name}!\"",
+            "f\"Hello, name!\"",
+            "\"Hello, \" + {name} + \"!\""
+        ],
+        "answerIndex": 1
     },
     {
-        "id": "js-05-trim-input",
-        "title": "Whitespace check",
-        "language": "js",
-        "prompt": "This should treat spaces as empty input. Fix it.",
-        "broken": "function isBlank(s) {\n  return s.length === 0;\n}\n",
-        "expected": "function isBlank(s) {\n  return s.trim().length === 0;\n}\n",
+        "id": "py-easy-mcq-05",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "dict get default",
+        "prompt": "What does this print?\n\nd = {}\nprint(d.get('x', 0))",
         "hints": [
-            "Use trim().",
-            "What about \"   \"?"
-        ]
+            "dict.get(key, default) returns default if missing."
+        ],
+        "choices": [
+            "None",
+            "0",
+            "KeyError",
+            "\"x\""
+        ],
+        "answerIndex": 1
     },
     {
-        "id": "js-06-default-param",
-        "title": "Default parameter",
-        "language": "js",
-        "prompt": "This should work when b is omitted (assume 0). Fix it.",
-        "broken": "function add(a, b) {\n  return a + b;\n}\n\n// expected: add(5) === 5\n",
-        "expected": "function add(a, b = 0) {\n  return a + b;\n}\n\n// expected: add(5) === 5\n",
+        "id": "py-easy-mcq-06",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "len of string",
+        "prompt": "What does this print?\n\nprint(len('hello'))",
         "hints": [
-            "Default params exist.",
-            "Or handle b == null."
-        ]
+            "len counts characters."
+        ],
+        "choices": [
+            "4",
+            "5",
+            "6",
+            "It errors"
+        ],
+        "answerIndex": 1
     },
     {
-        "id": "js-07-object-key",
-        "title": "Wrong property access",
-        "language": "js",
-        "prompt": "This should read a dynamic key from an object. Fix it.",
-        "broken": "function get(obj, key) {\n  return obj.key;\n}\n",
-        "expected": "function get(obj, key) {\n  return obj[key];\n}\n",
+        "id": "py-easy-mcq-07",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "mutable list aliasing",
+        "prompt": "What is printed?\n\na = [1, 2]\nb = a\nb.append(3)\nprint(a)",
         "hints": [
-            "Dot notation reads the literal property name.",
-            "Bracket notation uses the variable."
-        ]
+            "b points to the same list as a.",
+            "Mutations affect both references."
+        ],
+        "choices": [
+            "[1, 2]",
+            "[1, 2, 3]",
+            "[3]",
+            "It errors"
+        ],
+        "answerIndex": 1
     },
     {
-        "id": "js-08-parse-int",
-        "title": "String addition bug",
-        "language": "js",
-        "prompt": "This should add numeric strings as numbers. Fix it.",
-        "broken": "function addStrings(a, b) {\n  return a + b;\n}\n\n// expected: addStrings(\"2\",\"3\") === 5\n",
-        "expected": "function addStrings(a, b) {\n  return Number(a) + Number(b);\n}\n\n// expected: addStrings(\"2\",\"3\") === 5\n",
+        "id": "py-easy-mcq-08",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "integer division",
+        "prompt": "What does this print?\n\nprint(7 // 2)",
         "hints": [
-            "\"2\" + \"3\" concatenates.",
-            "Convert to Number first."
-        ]
+            "// is floor division."
+        ],
+        "choices": [
+            "3",
+            "3.5",
+            "4",
+            "It errors"
+        ],
+        "answerIndex": 0
     },
     {
-        "id": "js-09-filter-logic",
-        "title": "Filter predicate logic",
-        "language": "js",
-        "prompt": "This should keep only positive numbers. Fix the predicate.",
-        "broken": "function positives(nums) {\n  return nums.filter(n => n);\n}\n",
-        "expected": "function positives(nums) {\n  return nums.filter(n => n > 0);\n}\n",
+        "id": "py-easy-mcq-09",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "exception type",
+        "prompt": "What exception is raised?\n\nint('abc')",
         "hints": [
-            "Truthy isn’t the same as positive.",
-            "0 is falsy but not negative."
-        ]
+            "int() fails if the string isn't numeric."
+        ],
+        "choices": [
+            "TypeError",
+            "ValueError",
+            "KeyError",
+            "IndexError"
+        ],
+        "answerIndex": 1
     },
     {
-        "id": "js-10-async-await",
-        "title": "Forgot to await",
-        "language": "js",
-        "prompt": "This should return the parsed JSON from fetch. Fix it.",
-        "broken": "async function getJson(url) {\n  const res = await fetch(url);\n  return res.json();\n}\n",
-        "expected": "async function getJson(url) {\n  const res = await fetch(url);\n  return await res.json();\n}\n",
+        "id": "py-easy-mcq-10",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "in operator on list",
+        "prompt": "What does this print?\n\nnums = [1, 2, 3]\nprint(2 in nums)",
         "hints": [
-            "res.json() returns a Promise.",
-            "Await it before returning (for consistent callers)."
-        ]
+            "in checks membership."
+        ],
+        "choices": [
+            "True",
+            "False",
+            "2",
+            "It errors"
+        ],
+        "answerIndex": 0
+    },
+    {
+        "id": "py-easy-mcq-11",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "default parameter evaluation",
+        "prompt": "Which statement is true about default arguments in Python?",
+        "hints": [
+            "Defaults are evaluated once.",
+            "Mutable defaults can be surprising."
+        ],
+        "choices": [
+            "Defaults are evaluated every call.",
+            "Defaults are evaluated once at function definition time.",
+            "Defaults are ignored if you pass None.",
+            "Defaults must be immutable."
+        ],
+        "answerIndex": 1
+    },
+    {
+        "id": "py-easy-mcq-12",
+        "type": "mcq",
+        "difficulty": "easy",
+        "language": "py",
+        "title": "list comprehension result",
+        "prompt": "What does this print?\n\nprint([x * 2 for x in [1, 2, 3]])",
+        "hints": [
+            "Comprehensions build a new list.",
+            "Each element is transformed."
+        ],
+        "choices": [
+            "[2, 4, 6]",
+            "[1, 2, 3, 1, 2, 3]",
+            "[2, 3, 4]",
+            "It errors"
+        ],
+        "answerIndex": 0
+    },
+    {
+        "id": "py-medium-fill-01",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "inclusive range",
+        "prompt": "Fill the blank so the loop runs for 1..n (inclusive).",
+        "hints": [
+            "range end is exclusive.",
+            "You usually use n + 1."
+        ],
+        "template": "def count_to(n):\n    for i in range(1, __BLANK__):\n        print(i)\n",
+        "answer": "n + 1"
+    },
+    {
+        "id": "py-medium-fill-02",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "safe dict access",
+        "prompt": "Fill the blank so missing keys return 0 instead of crashing.",
+        "hints": [
+            "Use dict.get.",
+            "Provide a default."
+        ],
+        "template": "def get_score(scores, name):\n    return scores.__BLANK__(name, 0)\n",
+        "answer": "get"
+    },
+    {
+        "id": "py-medium-fill-03",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "strip whitespace",
+        "prompt": "Fill the blank so it returns True for strings that are empty or only spaces.",
+        "hints": [
+            "Use strip() to remove whitespace."
+        ],
+        "template": "def is_blank(s):\n    return __BLANK__ == \"\"\n",
+        "answer": "s.strip()"
+    },
+    {
+        "id": "py-medium-fill-04",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "f-string expression",
+        "prompt": "Fill the blank to correctly format the message.",
+        "hints": [
+            "Put the variable in { } inside an f-string."
+        ],
+        "template": "def greet(name):\n    return f\"Hello, __BLANK__!\"\n",
+        "answer": "{name}"
+    },
+    {
+        "id": "py-medium-fill-05",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "append vs extend",
+        "prompt": "Fill the blank so the list becomes [1, 2, 3, 4].",
+        "hints": [
+            "extend takes an iterable.",
+            "append adds one item."
+        ],
+        "template": "nums = [1, 2]\nnums.__BLANK__([3, 4])\n",
+        "answer": "extend"
+    },
+    {
+        "id": "py-medium-fill-06",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "exception handling",
+        "prompt": "Fill the blank so invalid ints return None instead of throwing.",
+        "hints": [
+            "Catch ValueError.",
+            "Return None in except."
+        ],
+        "template": "def to_int(s):\n    try:\n        return int(s)\n    except __BLANK__:\n        return None\n",
+        "answer": "ValueError"
+    },
+    {
+        "id": "py-medium-fill-07",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "join strings",
+        "prompt": "Fill the blank so it joins words with commas.",
+        "hints": [
+            "Use ','.join(list)."
+        ],
+        "template": "def csv_line(words):\n    return __BLANK__.join(words)\n",
+        "answer": "\",\""
+    },
+    {
+        "id": "py-medium-fill-08",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "list copy",
+        "prompt": "Fill the blank so b is a copy of a (not an alias).",
+        "hints": [
+            "Use a slicing copy.",
+            "Or list(a)."
+        ],
+        "template": "a = [1, 2, 3]\nb = a__BLANK__\n",
+        "answer": "[:]"
+    },
+    {
+        "id": "py-medium-fill-09",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "dictionary comprehension",
+        "prompt": "Fill the blank to build a dict mapping x -> x*x for x in nums.",
+        "hints": [
+            "Use {k: v for ...}."
+        ],
+        "template": "def squares_map(nums):\n    return {x: __BLANK__ for x in nums}\n",
+        "answer": "x * x"
+    },
+    {
+        "id": "py-medium-fill-10",
+        "type": "fill_blank",
+        "difficulty": "medium",
+        "language": "py",
+        "title": "return boolean",
+        "prompt": "Fill the blank so it returns True if x is even.",
+        "hints": [
+            "Even means remainder 0 when divided by 2."
+        ],
+        "template": "def is_even(x):\n    return x % 2 __BLANK__ 0\n",
+        "answer": "=="
+    },
+    {
+        "id": "py-hard-fix-01",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Off-by-one sum",
+        "prompt": "Fix the function so it returns the sum of 1..n inclusive.",
+        "hints": [
+            "range end is exclusive.",
+            "Use n + 1."
+        ],
+        "broken": "def sum_to(n):\n    s = 0\n    for i in range(1, n):\n        s += i\n    return s\n",
+        "expected": "def sum_to(n):\n    s = 0\n    for i in range(1, n + 1):\n        s += i\n    return s\n"
+    },
+    {
+        "id": "py-hard-fix-02",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Mutable default arg",
+        "prompt": "Fix the bug: calling add_item twice should not share the same list.",
+        "hints": [
+            "Don't use [] as a default.",
+            "Use None then create a list inside."
+        ],
+        "broken": "def add_item(x, items=[]):\n    items.append(x)\n    return items\n",
+        "expected": "def add_item(x, items=None):\n    if items is None:\n        items = []\n    items.append(x)\n    return items\n"
+    },
+    {
+        "id": "py-hard-fix-03",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Missing return in map",
+        "prompt": "Fix it so it returns a list of squared values.",
+        "hints": [
+            "List comprehensions return a list.",
+            "Don't forget to return the computed list."
+        ],
+        "broken": "def squares(nums):\n    out = []\n    for n in nums:\n        out.append(n * n)\n",
+        "expected": "def squares(nums):\n    out = []\n    for n in nums:\n        out.append(n * n)\n    return out\n"
+    },
+    {
+        "id": "py-hard-fix-04",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Wrong dict key access",
+        "prompt": "Fix it so missing keys return 0 instead of crashing.",
+        "hints": [
+            "Use dict.get(key, default)."
+        ],
+        "broken": "def points(scores, name):\n    return scores[name]\n",
+        "expected": "def points(scores, name):\n    return scores.get(name, 0)\n"
+    },
+    {
+        "id": "py-hard-fix-05",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "String formatting bug",
+        "prompt": "Fix the function so it returns: \"Ada has 3 points\".",
+        "hints": [
+            "Use an f-string.",
+            "Or format()."
+        ],
+        "broken": "def message(name, pts):\n    return name + \" has \" + pts + \" points\"\n",
+        "expected": "def message(name, pts):\n    return f\"{name} has {pts} points\"\n"
+    },
+    {
+        "id": "py-hard-fix-06",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Scope bug",
+        "prompt": "Fix it so it increments the global counter.",
+        "hints": [
+            "Assigning to a name inside a function makes it local unless declared global."
+        ],
+        "broken": "count = 0\n\ndef bump():\n    count += 1\n    return count\n",
+        "expected": "count = 0\n\ndef bump():\n    global count\n    count += 1\n    return count\n"
+    },
+    {
+        "id": "py-hard-fix-07",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Truthiness mistake",
+        "prompt": "Fix it so it keeps only positive numbers (not just truthy ones).",
+        "hints": [
+            "0 is falsy but not negative.",
+            "Check n > 0 explicitly."
+        ],
+        "broken": "def positives(nums):\n    return [n for n in nums if n]\n",
+        "expected": "def positives(nums):\n    return [n for n in nums if n > 0]\n"
+    },
+    {
+        "id": "py-hard-fix-08",
+        "type": "fix_code",
+        "difficulty": "hard",
+        "language": "py",
+        "title": "Exception handling",
+        "prompt": "Fix it so invalid inputs return None instead of crashing.",
+        "hints": [
+            "int() can raise ValueError.",
+            "Use try/except."
+        ],
+        "broken": "def safe_int(s):\n    return int(s)\n",
+        "expected": "def safe_int(s):\n    try:\n        return int(s)\n    except ValueError:\n        return None\n"
     }
 ]

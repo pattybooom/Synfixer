@@ -5,7 +5,6 @@
     --text: #f2f2f2;
 
     --accent: #e83fd4;
-    /* main accent */
     --danger: #fb7185;
 
     --border: rgba(255, 255, 255, .10);
@@ -19,6 +18,11 @@
 html,
 body {
     height: 100%
+}
+
+html,
+body {
+    touch-action: manipulation;
 }
 
 body {
@@ -35,7 +39,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 14px 16px;
-    background: rgba(7, 11, 22, .75);
+    background: rgba(26, 26, 26, .92);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     z-index: 10;
@@ -86,7 +90,7 @@ body {
 }
 
 .streak-flame {
-    filter: drop-shadow(0 6px 14px rgba(251, 113, 133, .25));
+    filter: drop-shadow(0 6px 14px rgba(232, 63, 212, .20));
 }
 
 .wrap {
@@ -96,7 +100,7 @@ body {
 }
 
 .card {
-    background: rgba(11, 16, 32, .86);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 22px;
     padding: 16px;
@@ -173,22 +177,18 @@ body {
 }
 
 .btn:hover {
-    filter: brightness(1.06)
+    filter: brightness(1.03)
 }
 
 .btn.primary {
-    background: linear-gradient(135deg, rgba(74, 222, 128, .25), rgba(96, 165, 250, .18));
-    border-color: rgba(74, 222, 128, .35);
+    background: var(--accent);
+    border-color: rgba(232, 63, 212, .65);
+    color: #111;
 }
 
 .btn.danger {
     background: rgba(251, 113, 133, .12);
     border-color: rgba(251, 113, 133, .35);
-}
-
-html,
-body {
-    touch-action: manipulation;
 }
 
 .btn.small {
@@ -229,7 +229,7 @@ body {
     font-size: 12px;
     padding: 6px 10px;
     border-radius: 999px;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(232, 63, 212, .35);
     background: rgba(255, 255, 255, .06);
 }
 
@@ -348,7 +348,7 @@ body {
     display: flex;
     justify-content: space-around;
     padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
-    background: rgba(7, 11, 22, .82);
+    background: rgba(26, 26, 26, .92);
     border-top: 1px solid var(--border);
     backdrop-filter: blur(10px);
 }
@@ -359,57 +359,24 @@ body {
     padding: 10px 10px;
     border-radius: 16px;
     border: 1px solid var(--border);
-    background: rgba(255, 255, 255, .05);
+    background-color: transparent;
     color: var(--text);
     font-weight: 900;
-}
-
-.tab.active {
-    border-color: rgba(96, 165, 250, .35);
-    background: rgba(96, 165, 250, .12);
-}
-
-/* Simpler surfaces */
-.topbar {
-    background: rgba(26, 26, 26, .92);
-    border-bottom: 1px solid var(--border);
-}
-
-.card {
-    background: var(--card);
-}
-
-/* Buttons: primary = accent */
-.btn.primary {
-    background: var(--accent);
-    border-color: rgba(232, 63, 212, .65);
-    color: #111;
-}
-
-.btn.primary:hover {
-    filter: brightness(1.03);
-}
-
-/* Tabs: default neutral, active = accent */
-.tabbar {
-    background: rgba(26, 26, 26, .92);
-    border-top: 1px solid var(--border);
-}
-
-.tab {
     transition: background-color .12s ease, border-color .12s ease, color .12s ease;
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text);
 }
 
 .tab.active {
-    background: var(--accent);
+    background-color: var(--accent);
     border-color: rgba(232, 63, 212, .65);
     color: #111;
 }
 
-/* Chips/pills can also lean accent when needed */
-.chip {
-    border-color: rgba(232, 63, 212, .35);
+/* Mobile Safari fixes for active tab styling */
+button,
+.btn,
+.tab {
+    -webkit-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    -webkit-tap-highlight-color: transparent;
 }
