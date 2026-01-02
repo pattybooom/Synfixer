@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1020" />
+    <title>Daily Fix</title>
+
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <div class="logo">🛠️</div>
+            <div>
+                <div class="title">Daily Fix</div>
+                <div class="subtitle" id="subTitle">Fix 1 tiny bug per day</div>
+            </div>
+        </div>
+
+        <div class="streak" title="Streak">
+            <div class="streak-num" id="streakNum">0</div>
+            <div class="streak-flame">🔥</div>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section id="screenHome" class="screen">
+            <div class="card hero">
+                <div class="hero-row">
+                    <div>
+                        <div class="kicker">Today</div>
+                        <div class="big" id="todayTitle">Your daily fix</div>
+                        <div class="muted" id="todayMeta">—</div>
+                    </div>
+                    <div class="pill" id="todayPill">Not done</div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn primary" id="btnGoToday">Start</button>
+                    <button class="btn" id="btnHintHome">Peek hint</button>
+                </div>
+
+                <div class="tiny muted" id="homeHint" style="display:none;"></div>
+            </div>
+
+            <div class="grid2">
+                <div class="card">
+                    <div class="kicker">Stats</div>
+                    <div class="stat-row">
+                        <div class="stat">
+                            <div class="stat-num" id="bestNum">0</div>
+                            <div class="stat-label">Best</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-num" id="doneNum">0</div>
+                            <div class="stat-label">Done</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="kicker">Streak rule</div>
+                    <div class="muted">
+                        Do 1 fix per day. Miss a day → streak resets (optional grace in Settings).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="screenToday" class="screen" style="display:none;">
+            <div class="card">
+                <div class="kicker" id="challengeKicker">Challenge</div>
+                <div class="big" id="challengeTitle">—</div>
+                <div class="muted" id="challengePrompt">—</div>
+
+                <div class="spacer"></div>
+
+                <div class="label-row">
+                    <div class="label">Broken code</div>
+                    <div class="chip" id="challengeLang">js</div>
+                </div>
+                <pre class="code" id="brokenCode"></pre>
+
+                <div class="label-row">
+                    <div class="label">Your fixed version</div>
+                    <button class="btn small" id="btnCopyBroken">Copy broken → editor</button>
+                </div>
+                <textarea id="editor" class="editor" spellcheck="false"></textarea>
+
+                <div class="row">
+                    <button class="btn primary" id="btnCheck">Check</button>
+                    <button class="btn" id="btnHint">Hint</button>
+                    <button class="btn danger" id="btnShowSolution">Show solution</button>
+                </div>
+
+                <div class="result" id="resultBox" style="display:none;"></div>
+
+                <div class="tiny muted" id="hintBox" style="display:none;"></div>
+                <details class="tiny muted" id="solutionBox" style="display:none;">
+                    <summary>Solution</summary>
+                    <pre class="code" id="solutionPre"></pre>
+                </details>
+
+                <div class="spacer"></div>
+
+                <div class="row">
+                    <button class="btn" id="btnBackHome">Back</button>
+                    <button class="btn" id="btnGoHistory">History</button>
+                    <button class="btn" id="btnGoSettings">Settings</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="screenHistory" class="screen" style="display:none;">
+            <div class="card">
+                <div class="big">History</div>
+                <div class="muted" id="historyMeta">—</div>
+                <div class="spacer"></div>
+                <div id="historyList" class="list"></div>
+                <div class="spacer"></div>
+                <button class="btn" id="btnBackHome2">Back</button>
+            </div>
+        </section>
+
+        <section id="screenSettings" class="screen" style="display:none;">
+            <div class="card">
+                <div class="big">Settings</div>
+                <div class="spacer"></div>
+
+                <label class="toggle">
+                    <input type="checkbox" id="toggleGrace" />
+                    <span>Enable 1 grace save (one-time) if you miss a day</span>
+                </label>
+                <div class="tiny muted">
+                    If enabled and you open the app after missing a day, you’ll get a “Use grace” button once.
+                </div>
+
+                <div class="spacer"></div>
+
+                <div class="row">
+                    <button class="btn" id="btnExport">Export data</button>
+                    <label class="btn">
+                        Import data
+                        <input type="file" id="fileImport" accept="application/json" style="display:none;" />
+                    </label>
+                </div>
+
+                <div class="spacer"></div>
+
+                <button class="btn danger" id="btnReset">Reset all data</button>
+
+                <div class="spacer"></div>
+                <button class="btn" id="btnBackHome3">Back</button>
+            </div>
+        </section>
+    </main>
+
+    <nav class="tabbar">
+        <button class="tab" data-route="#home">Home</button>
+        <button class="tab" data-route="#today">Today</button>
+        <button class="tab" data-route="#history">History</button>
+        <button class="tab" data-route="#settings">Settings</button>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

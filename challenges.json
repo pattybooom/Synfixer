@@ -1,0 +1,122 @@
+[
+    {
+        "id": "js-01-off-by-one",
+        "title": "Off-by-one in loop",
+        "language": "js",
+        "prompt": "This should sum numbers 1..n (inclusive). Fix the bug.",
+        "broken": "function sumTo(n) {\n  let s = 0;\n  for (let i = 1; i < n; i++) {\n    s += i;\n  }\n  return s;\n}\n\n// expected: sumTo(5) === 15\n",
+        "expected": "function sumTo(n) {\n  let s = 0;\n  for (let i = 1; i <= n; i++) {\n    s += i;\n  }\n  return s;\n}\n\n// expected: sumTo(5) === 15\n",
+        "hints": [
+            "Inclusive ranges usually use <=.",
+            "Try n=1 and n=2 mentally."
+        ]
+    },
+    {
+        "id": "js-02-const-reassign",
+        "title": "Const reassignment",
+        "language": "js",
+        "prompt": "This should build a greeting string. Fix the runtime error.",
+        "broken": "function greet(name) {\n  const msg = \"Hello\";\n  msg = msg + \", \" + name + \"!\";\n  return msg;\n}\n",
+        "expected": "function greet(name) {\n  let msg = \"Hello\";\n  msg = msg + \", \" + name + \"!\";\n  return msg;\n}\n",
+        "hints": [
+            "You can’t reassign a const.",
+            "Either use let or build the string in one expression."
+        ]
+    },
+    {
+        "id": "js-03-missing-return",
+        "title": "Missing return",
+        "language": "js",
+        "prompt": "This should return true if x is even. Fix it.",
+        "broken": "function isEven(x) {\n  x % 2 === 0;\n}\n",
+        "expected": "function isEven(x) {\n  return x % 2 === 0;\n}\n",
+        "hints": [
+            "Expressions don’t return automatically.",
+            "Add return."
+        ]
+    },
+    {
+        "id": "js-04-array-map",
+        "title": "Map callback bug",
+        "language": "js",
+        "prompt": "This should square all numbers, but returns undefineds. Fix it.",
+        "broken": "function squares(nums) {\n  return nums.map(n => { n * n; });\n}\n",
+        "expected": "function squares(nums) {\n  return nums.map(n => n * n);\n}\n",
+        "hints": [
+            "Arrow function with {} needs an explicit return.",
+            "Or remove the braces."
+        ]
+    },
+    {
+        "id": "js-05-trim-input",
+        "title": "Whitespace check",
+        "language": "js",
+        "prompt": "This should treat spaces as empty input. Fix it.",
+        "broken": "function isBlank(s) {\n  return s.length === 0;\n}\n",
+        "expected": "function isBlank(s) {\n  return s.trim().length === 0;\n}\n",
+        "hints": [
+            "Use trim().",
+            "What about \"   \"?"
+        ]
+    },
+    {
+        "id": "js-06-default-param",
+        "title": "Default parameter",
+        "language": "js",
+        "prompt": "This should work when b is omitted (assume 0). Fix it.",
+        "broken": "function add(a, b) {\n  return a + b;\n}\n\n// expected: add(5) === 5\n",
+        "expected": "function add(a, b = 0) {\n  return a + b;\n}\n\n// expected: add(5) === 5\n",
+        "hints": [
+            "Default params exist.",
+            "Or handle b == null."
+        ]
+    },
+    {
+        "id": "js-07-object-key",
+        "title": "Wrong property access",
+        "language": "js",
+        "prompt": "This should read a dynamic key from an object. Fix it.",
+        "broken": "function get(obj, key) {\n  return obj.key;\n}\n",
+        "expected": "function get(obj, key) {\n  return obj[key];\n}\n",
+        "hints": [
+            "Dot notation reads the literal property name.",
+            "Bracket notation uses the variable."
+        ]
+    },
+    {
+        "id": "js-08-parse-int",
+        "title": "String addition bug",
+        "language": "js",
+        "prompt": "This should add numeric strings as numbers. Fix it.",
+        "broken": "function addStrings(a, b) {\n  return a + b;\n}\n\n// expected: addStrings(\"2\",\"3\") === 5\n",
+        "expected": "function addStrings(a, b) {\n  return Number(a) + Number(b);\n}\n\n// expected: addStrings(\"2\",\"3\") === 5\n",
+        "hints": [
+            "\"2\" + \"3\" concatenates.",
+            "Convert to Number first."
+        ]
+    },
+    {
+        "id": "js-09-filter-logic",
+        "title": "Filter predicate logic",
+        "language": "js",
+        "prompt": "This should keep only positive numbers. Fix the predicate.",
+        "broken": "function positives(nums) {\n  return nums.filter(n => n);\n}\n",
+        "expected": "function positives(nums) {\n  return nums.filter(n => n > 0);\n}\n",
+        "hints": [
+            "Truthy isn’t the same as positive.",
+            "0 is falsy but not negative."
+        ]
+    },
+    {
+        "id": "js-10-async-await",
+        "title": "Forgot to await",
+        "language": "js",
+        "prompt": "This should return the parsed JSON from fetch. Fix it.",
+        "broken": "async function getJson(url) {\n  const res = await fetch(url);\n  return res.json();\n}\n",
+        "expected": "async function getJson(url) {\n  const res = await fetch(url);\n  return await res.json();\n}\n",
+        "hints": [
+            "res.json() returns a Promise.",
+            "Await it before returning (for consistent callers)."
+        ]
+    }
+]
