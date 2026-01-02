@@ -417,8 +417,3 @@ button,
 }
 
 /* make sure iOS doesn't add native styling */
-.mcq-choice {
-    -webkit-appearance: none;
-    appearance: none;
-    -webkit-tap-highlight-color: transparent;
-}
