@@ -1,6 +1,6 @@
 {
-    "name": "Daily Fix",
-    "short_name": "Daily Fix",
+    "name": "Synfixer",
+    "short_name": "Synfixer",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#070b16",
