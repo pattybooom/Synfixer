@@ -5,7 +5,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "range end value",
-        "prompt": "What does this print?\n\nprint(list(range(3)))",
+        "prompt": "What does this print?",
+        "code": "print(list(range(3)))\n",
         "hints": [
             "range(n) starts at 0.",
             "The end is exclusive."
@@ -24,7 +25,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "list append vs extend",
-        "prompt": "What is the value of x?\n\nx = [1, 2]\nx.append([3, 4])",
+        "prompt": "What is the value of x after running this?",
+        "code": "x = [1, 2]\nx.append([3, 4])\n",
         "hints": [
             "append adds one item.",
             "extend adds multiple items."
@@ -43,7 +45,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "truthiness of empty list",
-        "prompt": "What does this print?\n\nx = []\nif x:\n    print('yes')\nelse:\n    print('no')",
+        "prompt": "What does this print?",
+        "code": "x = []\nif x:\n    print('yes')\nelse:\n    print('no')\n",
         "hints": [
             "Empty containers are falsy.",
             "Non-empty containers are truthy."
@@ -62,7 +65,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "string formatting",
-        "prompt": "Which is the correct f-string to produce: Hello, Ada!\n\nname = \"Ada\"",
+        "prompt": "Which is the correct f-string to produce: Hello, Ada! (assume name = \"Ada\")",
+        "code": "name = \"Ada\"\n",
         "hints": [
             "f-strings start with f.",
             "Expressions go inside { }."
@@ -81,7 +85,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "dict get default",
-        "prompt": "What does this print?\n\nd = {}\nprint(d.get('x', 0))",
+        "prompt": "What does this print?",
+        "code": "d = {}\nprint(d.get('x', 0))\n",
         "hints": [
             "dict.get(key, default) returns default if missing."
         ],
@@ -99,7 +104,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "len of string",
-        "prompt": "What does this print?\n\nprint(len('hello'))",
+        "prompt": "What does this print?",
+        "code": "print(len('hello'))\n",
         "hints": [
             "len counts characters."
         ],
@@ -117,7 +123,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "mutable list aliasing",
-        "prompt": "What is printed?\n\na = [1, 2]\nb = a\nb.append(3)\nprint(a)",
+        "prompt": "What is printed?",
+        "code": "a = [1, 2]\nb = a\nb.append(3)\nprint(a)\n",
         "hints": [
             "b points to the same list as a.",
             "Mutations affect both references."
@@ -136,7 +143,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "integer division",
-        "prompt": "What does this print?\n\nprint(7 // 2)",
+        "prompt": "What does this print?",
+        "code": "print(7 // 2)\n",
         "hints": [
             "// is floor division."
         ],
@@ -154,7 +162,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "exception type",
-        "prompt": "What exception is raised?\n\nint('abc')",
+        "prompt": "What exception is raised by this line?",
+        "code": "int('abc')\n",
         "hints": [
             "int() fails if the string isn't numeric."
         ],
@@ -172,7 +181,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "in operator on list",
-        "prompt": "What does this print?\n\nnums = [1, 2, 3]\nprint(2 in nums)",
+        "prompt": "What does this print?",
+        "code": "nums = [1, 2, 3]\nprint(2 in nums)\n",
         "hints": [
             "in checks membership."
         ],
@@ -191,6 +201,7 @@
         "language": "py",
         "title": "default parameter evaluation",
         "prompt": "Which statement is true about default arguments in Python?",
+        "code": "",
         "hints": [
             "Defaults are evaluated once.",
             "Mutable defaults can be surprising."
@@ -209,7 +220,8 @@
         "difficulty": "easy",
         "language": "py",
         "title": "list comprehension result",
-        "prompt": "What does this print?\n\nprint([x * 2 for x in [1, 2, 3]])",
+        "prompt": "What does this print?",
+        "code": "print([x * 2 for x in [1, 2, 3]])\n",
         "hints": [
             "Comprehensions build a new list.",
             "Each element is transformed."
@@ -390,11 +402,11 @@
         "type": "fix_code",
         "difficulty": "hard",
         "language": "py",
-        "title": "Missing return in map",
+        "title": "Missing return",
         "prompt": "Fix it so it returns a list of squared values.",
         "hints": [
-            "List comprehensions return a list.",
-            "Don't forget to return the computed list."
+            "You computed the list.",
+            "Return it at the end."
         ],
         "broken": "def squares(nums):\n    out = []\n    for n in nums:\n        out.append(n * n)\n",
         "expected": "def squares(nums):\n    out = []\n    for n in nums:\n        out.append(n * n)\n    return out\n"
@@ -404,7 +416,7 @@
         "type": "fix_code",
         "difficulty": "hard",
         "language": "py",
-        "title": "Wrong dict key access",
+        "title": "Safe dict access",
         "prompt": "Fix it so missing keys return 0 instead of crashing.",
         "hints": [
             "Use dict.get(key, default)."
@@ -417,11 +429,11 @@
         "type": "fix_code",
         "difficulty": "hard",
         "language": "py",
-        "title": "String formatting bug",
+        "title": "String formatting",
         "prompt": "Fix the function so it returns: \"Ada has 3 points\".",
         "hints": [
             "Use an f-string.",
-            "Or format()."
+            "pts might be an int."
         ],
         "broken": "def message(name, pts):\n    return name + \" has \" + pts + \" points\"\n",
         "expected": "def message(name, pts):\n    return f\"{name} has {pts} points\"\n"
@@ -434,7 +446,7 @@
         "title": "Scope bug",
         "prompt": "Fix it so it increments the global counter.",
         "hints": [
-            "Assigning to a name inside a function makes it local unless declared global."
+            "Assigning makes it local unless declared global."
         ],
         "broken": "count = 0\n\ndef bump():\n    count += 1\n    return count\n",
         "expected": "count = 0\n\ndef bump():\n    global count\n    count += 1\n    return count\n"
@@ -448,7 +460,7 @@
         "prompt": "Fix it so it keeps only positive numbers (not just truthy ones).",
         "hints": [
             "0 is falsy but not negative.",
-            "Check n > 0 explicitly."
+            "Use n > 0."
         ],
         "broken": "def positives(nums):\n    return [n for n in nums if n]\n",
         "expected": "def positives(nums):\n    return [n for n in nums if n > 0]\n"

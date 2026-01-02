@@ -59,14 +59,12 @@ function defaultStore() {
     streak: {
       current: 0,
       best: 0,
-      lastCompletedDayKey: null,       // last day we completed ANY challenge
-      lastCreditedDayKey: null,        // last day streak incremented
+      lastCompletedDayKey: null,
+      lastCreditedDayKey: null,
       graceAvailable: true,
-      graceUsedForDayKey: null,        // when used, equals the dayKey being saved
+      graceUsedForDayKey: null,
     },
-    completions: {
-      // dayKey -> [ {challengeId, completedAt, type, difficulty, userAnswer}, ... ]
-    },
+    completions: {}
   };
 }
 
@@ -87,7 +85,6 @@ function migrateStore(raw) {
     const v = out.completions[k];
     if (Array.isArray(v)) continue;
     if (v && typeof v === "object") {
-      // old: {dayKey, challengeId, completedAt, userAnswer}
       out.completions[k] = [
         {
           challengeId: v.challengeId || v.id || "unknown",
@@ -102,7 +99,6 @@ function migrateStore(raw) {
     }
   }
 
-  // Ensure credited day exists if we previously tracked lastCompletedDayKey only
   if (!out.streak.lastCreditedDayKey && out.streak.lastCompletedDayKey) {
     out.streak.lastCreditedDayKey = out.streak.lastCompletedDayKey;
   }
@@ -139,7 +135,6 @@ function getCompletionsForDay(dayKey) {
 }
 
 function pickChallengeForAttempt(dayKey, attemptIndex) {
-  // Deterministic per day + attempt index (unlimited)
   const h = hashString(`dailyfix|${dayKey}|${attemptIndex}`);
   const idx = h % state.challenges.length;
   return state.challenges[idx];
@@ -169,7 +164,6 @@ function updateTopUI() {
   }, 0);
   $("#doneNum").textContent = String(doneTotal);
 
-  // Home card: show "next challenge"
   const c = state.today.challenge;
   $("#todayTitle").textContent = c ? c.title : "—";
   $("#todayMeta").textContent = c ? c.prompt : "—";
@@ -199,7 +193,6 @@ function route() {
 }
 
 function ensureTodayUIExtras() {
-  // Choices container (mcq)
   let choices = $("#choicesBox");
   if (!choices) {
     choices = document.createElement("div");
@@ -209,7 +202,6 @@ function ensureTodayUIExtras() {
     broken.parentElement.insertBefore(choices, broken.nextSibling);
   }
 
-  // Blank input (fill_blank)
   let blank = $("#blankInput");
   if (!blank) {
     blank = document.createElement("input");
@@ -233,7 +225,6 @@ function ensureTodayUIExtras() {
     editor.parentElement.insertBefore(blank, editor);
   }
 
-  // Do another button
   let another = $("#btnAnother");
   if (!another) {
     another = document.createElement("button");
@@ -294,7 +285,6 @@ function renderToday() {
   $("#challengePrompt").textContent = c.prompt;
   $("#challengeLang").textContent = c.language;
 
-  // Hide/show parts per type
   const brokenPre = $("#brokenCode");
   const editor = $("#editor");
   const blank = $("#blankInput");
@@ -312,9 +302,8 @@ function renderToday() {
   $("#solutionBox").style.display = "none";
   $("#solutionPre").textContent = "";
 
-  // Build UI per challenge type
   if (c.type === "mcq") {
-    brokenPre.textContent = "";
+    brokenPre.textContent = c.code || "";
     choices.style.display = "";
     const group = `mcq-${dayKey}-${n}`;
 
@@ -346,13 +335,11 @@ function renderToday() {
 
     clearResult();
   } else if (c.type === "fill_blank") {
-    // show template (with __BLANK__)
     brokenPre.textContent = c.template;
     blank.style.display = "";
     blank.value = "";
     clearResult();
   } else {
-    // fix_code
     brokenPre.textContent = c.broken;
     $("#btnCopyBroken").style.display = "";
     editor.style.display = "";
@@ -488,15 +475,12 @@ function applyStreakOnFirstCompletion(todayKey) {
   const diff = dayDiff(ref, todayKey);
 
   if (diff === 0) {
-    // same day, but not credited? (shouldn't happen) — credit once
     st.lastCreditedDayKey = todayKey;
   } else if (diff === 1) {
     st.current = (st.current || 0) + 1;
     st.lastCreditedDayKey = todayKey;
   } else {
-    // missed days
     if (st.graceUsedForDayKey === todayKey) {
-      // treat as saved: increment as if consecutive
       st.current = (st.current || 0) + 1;
       st.lastCreditedDayKey = todayKey;
       st.graceUsedForDayKey = null;
@@ -527,11 +511,9 @@ function recordCompletion(challenge, userAnswer) {
   list.push(entry);
   state.store.completions[dayKey] = list;
 
-  // Streak credits at most once per day (only on first completion)
   if (firstOfDay) {
     applyStreakOnFirstCompletion(dayKey);
   } else {
-    // still track last completed day
     state.store.streak.lastCompletedDayKey = dayKey;
   }
 
@@ -585,7 +567,6 @@ function checkAnswer() {
     return;
   }
 
-  // fix_code
   const editorVal = $("#editor").value;
   const got = normalizeCode(editorVal);
   const exp = normalizeCode(c.expected);
@@ -709,7 +690,6 @@ async function loadChallenges() {
   const res = await fetch("./challenges.json", { cache: "no-cache" });
   const data = await res.json();
 
-  // Enforce python-only pack
   const filtered = (Array.isArray(data) ? data : []).filter((c) => c && c.language === "py");
   state.challenges = filtered;
 
