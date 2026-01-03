@@ -177,7 +177,8 @@ body {
 }
 
 #btnHint {
-    font-size: 50%;
+    font-size: 7px;
+
 }
 
 .btn:hover {
@@ -187,13 +188,13 @@ body {
 .btn.primary {
     background: var(--accent);
     border-color: rgba(232, 63, 212, .65);
-    color: #111;
+    color: #ffffff;
 }
 
 .btn.danger {
     background: rgba(251, 113, 133, .12);
     border-color: rgba(251, 113, 133, .35);
-    font-size: 50%;
+    font-size: 7px;
 }
 
 .btn.small {
